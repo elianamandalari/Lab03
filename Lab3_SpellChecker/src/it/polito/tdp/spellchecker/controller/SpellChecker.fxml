@@ -53,7 +53,13 @@
             </TextArea>
             <HBox alignment="BOTTOM_RIGHT">
                <children>
-                  <Label fx:id="lblErrors" />
+                  <Label fx:id="lblErrors">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding></Label>
                   
                   <Button fx:id="btnClearText" mnemonicParsing="false" onAction="#doClearText" text="Clear Text" />
                </children>

@@ -29,21 +29,40 @@ public void loadDictionary(String language){
 
 public List<RichWord> spellCheckText(List<String> inputTextList){
 	
-	RichWord r;
-	List <RichWord> paroleRich=new ArrayList<RichWord>();
-	for(String input:inputTextList)
-	{
-		if(listaParoleDizionario.contains(input))
-			r=new RichWord(input,true);
-		else
-			r=new RichWord(input,false);
-		  
-		paroleRich.add(r);
-	}
-	
-	return paroleRich;
+	List<RichWord> paroleRich=new ArrayList<RichWord>();
+	Collections.sort(listaParoleDizionario);
+
+    for(int i=0;i<inputTextList.size() ;i++){
+    	
+    	int start = 0;
+        int end = listaParoleDizionario.size();
+        RichWord r;
+        boolean trovato=false;
+        
+    while(start <= end && trovato==false) {
+    	 
+    	  int meta = (start + end) / 2;
+    	  
+    	  if(inputTextList.get(i).compareTo(listaParoleDizionario.get(meta))==0)
+          	trovato=true;
+    	  
+          if(inputTextList.get(i).compareTo(listaParoleDizionario.get(meta))>0)
+            start = meta + 1;
+       
+          
+          if(inputTextList.get(i).compareTo(listaParoleDizionario.get(meta))<0)
+            end = meta - 1;
+    }
+    
+    if(trovato==true)
+      r=new RichWord(inputTextList.get(i),true);
+    else
+      r=new RichWord(inputTextList.get(i),false);
+    
+      paroleRich.add(r);
+    
+    }
+  return paroleRich;
+
 }
-
-
-
 }
